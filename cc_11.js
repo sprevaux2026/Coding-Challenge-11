@@ -71,3 +71,31 @@ class Library {
 const library = new Library();
 library.addBook(book1);
 library.listBooks();
+
+// Task 4 - Implemented Book Borrowing
+Library.prototype.lendBook = function (borrowerId, isbn) {
+    let book = this.books.find(bk => bk.isbn === isbn);
+    let borrower = this.borrowers.find(br => br.borrowerId === borrowerId);
+    
+    if (!book) {
+        console.log(`No book found with ISBN: ${isbn}!`);
+        return;
+    }
+    if (!borrower) {
+        console.log(`No borrower found with ID: ${borrowerId}!`);
+        return;
+    }
+    if (book.copies > 0) {
+        book.updateCopies(-1);
+        borrower.borrowBook(book.title);
+        console.log("Book borrowed successfully.");
+    } else {
+        console.log(`No copies of ${book.title} available!`);
+    }
+};
+
+// Test Case 4
+library.borrowers.push(borrower1);
+library.lendBook(201, 123456);
+console.log(book1.getDetails());
+console.log(borrower1.borrowedBooks);
