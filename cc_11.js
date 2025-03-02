@@ -99,3 +99,30 @@ library.borrowers.push(borrower1);
 library.lendBook(201, 123456);
 console.log(book1.getDetails());
 console.log(borrower1.borrowedBooks);
+
+// Task 5 - Implemented Book Returns
+Library.prototype.returnBook = function (borrowerId, isbn) {
+    let book = this.books.find(bk => bk.isbn === isbn);
+    let borrower = this.borrowers.find(br => br.borrowerId === borrowerId);
+    
+    if (!book) {
+        console.log(`No book found with ISBN: ${isbn}!`);
+        return;
+    }
+    if (!borrower) {
+        console.log(`No borrower found with ID: ${borrowerId}!`);
+        return;
+    }
+    if (borrower.borrowedBooks.includes(book.title)) {
+        book.updateCopies(1);
+        borrower.returnBook(book.title);
+        console.log("Book returned successfully.");
+    } else {
+        console.log("This borrower did not borrow this book.");
+    }
+};
+
+// Test Case 5
+library.returnBook(201, 123456);
+console.log(book1.getDetails());
+console.log(borrower1.borrowedBooks);
