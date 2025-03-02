@@ -1,4 +1,7 @@
 // Task 1 - Created Book Class
+//created a class called Book with a constructor that takes in title, author, isbn, and copies as parameters
+//created a method called getDetails that returns a string with the book's title, author, isbn, and copies
+//created a method called updateCopies that takes in a quantity and updates the copies property by that quantity
 class Book {
     constructor(title, author, isbn, copies) {
         this.title = title;
@@ -23,6 +26,7 @@ book1.updateCopies(-1);
 console.log(book1.getDetails());
 
 // Task 2 - Created Borrower Class
+//created borrower class and return book method
 class Borrower {
     constructor(name, borrowerId) {
         this.name = name;
@@ -52,6 +56,10 @@ borrower1.returnBook("The Great Gatsby");
 console.log(borrower1.borrowedBooks);
 
 // Task 3 - Created Library Class
+//created a constructor that takes in name and borrowerId as parameters
+//created an array called books
+//created a method called addBook that adds a book to the books array
+//created a method called listBooks that logs the details of each book in the books array
 class Library {
     constructor() {
         this.books = [];
@@ -73,6 +81,9 @@ library.addBook(book1);
 library.listBooks();
 
 // Task 4 - Implemented Book Borrowing
+//created a method called lendBook that takes in borrowerId and isbn as parameters
+//updated the lendBook method to check if the book and borrower exist
+//updated the lendBook method to check if there are copies of the book available
 Library.prototype.lendBook = function (borrowerId, isbn) {
     let book = this.books.find(bk => bk.isbn === isbn);
     let borrower = this.borrowers.find(br => br.borrowerId === borrowerId);
@@ -101,6 +112,9 @@ console.log(book1.getDetails());
 console.log(borrower1.borrowedBooks);
 
 // Task 5 - Implemented Book Returns
+//updated the lendBook method to update the copies of the book and add the book to the borrower's borrowedBooks array
+//created a method called returnBook that takes in borrowerId and isbn as parameters
+
 Library.prototype.returnBook = function (borrowerId, isbn) {
     let book = this.books.find(bk => bk.isbn === isbn);
     let borrower = this.borrowers.find(br => br.borrowerId === borrowerId);
